@@ -1,0 +1,327 @@
+*{
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: "";
+    gap: 5%;
+    height: 100vh;
+    margin: 0;
+    background-color: #1f1f23;
+    color: #ffffff;
+}
+
+h1 {
+    font-size: 2.5em;
+    background: linear-gradient(135deg, #ffcc70, #ff9a9e);
+    color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls label, .controls input, .controls button, .controls span {
+    margin: 5px;
+    font-size: 1.2em;
+}
+
+button {
+    background: linear-gradient(135deg, #ffcc70, #ff9a9e);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 10px #ffc248;
+}
+
+button:hover {
+    background-color: #16a085;
+}
+
+#board {
+    display: grid;
+    gap: 0px;
+    margin-top: 10px;
+    transition: all 0.2s;
+    /* box-shadow: 0px 10px 40px #131313f2; */
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: #1b1b25;
+    /* border: 1px solid #00000029; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 5px #0808094a;
+}
+
+.cell.queen::before {
+    content: "♛";
+    font-size: 32px;
+    color: #9b59b6;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cell.queen.active::before {
+    color: #2ecc71;
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 15px #2ecc71;
+}
+
+.cell.queen.backtrack::before {
+    color: #e74c3c;
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 15px #e74c3c;
+}
+
+.cell.black {
+    background-color: #121117;
+}
+
+#speedRange {
+    width: 200px;
+}
+
+#speedValue {
+    color: white;
+    font-size: 1.2em;
+}
+
+@keyframes confetti-left {
+    0% { transform: translate(-100vw, 100vh) rotateZ(0deg); }
+    100% { transform: translate(100vw, -100vh) rotateZ(360deg); }
+}
+
+@keyframes confetti-right {
+    0% { transform: translate(100vw, 100vh) rotateZ(0deg); }
+    100% { transform: translate(-100vw, -100vh) rotateZ(360deg); }
+}
+
+.confetti {
+    position: fixed;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    background-color: var(--confetti-color);
+    opacity: 0.8;
+}
+
+.confetti:nth-child(odd) {
+    left: calc(10% + var(--offset-left));
+    animation: confetti-left linear infinite;
+}
+
+.confetti:nth-child(even) {
+    right: calc(10% + var(--offset-right));
+    animation: confetti-right linear infinite;
+}
+
+.confetti:nth-child(1) { --confetti-color: #ffcc70; --offset-left: 0%; --offset-right: 0%; animation-duration: 2.5s; }
+.confetti:nth-child(2) { --confetti-color: #ff9a9e; --offset-left: 1%; --offset-right: 1%; animation-duration: 3s; }
+.confetti:nth-child(3) { --confetti-color: #9b59b6; --offset-left: 2%; --offset-right: 2%; animation-duration: 2.7s; }
+.confetti:nth-child(4) { --confetti-color: #2ecc71; --offset-left: 3%; --offset-right: 3%; animation-duration: 2.9s; }
+.confetti:nth-child(5) { --confetti-color: #3498db; --offset-left: 4%; --offset-right: 4%; animation-duration: 2.6s; }
+.confetti:nth-child(6) { --confetti-color: #e74c3c; --offset-left: 5%; --offset-right: 5%; animation-duration: 3.1s; }
+.confetti:nth-child(7) { --confetti-color: #f1c40f; --offset-left: 6%; --offset-right: 6%; animation-duration: 2.8s; }
+.confetti:nth-child(8) { --confetti-color: #e67e22; --offset-left: 7%; --offset-right: 7%; animation-duration: 3.2s; }
+.confetti:nth-child(9) { --confetti-color: #16a085; --offset-left: 8%; --offset-right: 8%; animation-duration: 2.4s; }
+.confetti:nth-child(10) { --confetti-color: #34495e; --offset-left: 9%; --offset-right: 9%; animation-duration: 3.3s; }
+.confetti:nth-child(11) { --confetti-color: #ffcc70; --offset-left: -9%; --offset-right: -9%; animation-duration: 2.6s; }
+.confetti:nth-child(12) { --confetti-color: #ff9a9e; --offset-left: -8%; --offset-right: -8%; animation-duration: 3.4s; }
+.confetti:nth-child(13) { --confetti-color: #9b59b6; --offset-left: -7%; --offset-right: -7%; animation-duration: 2.9s; }
+.confetti:nth-child(14) { --confetti-color: #2ecc71; --offset-left: -6%; --offset-right: -6%; animation-duration: 3s; }
+.confetti:nth-child(15) { --confetti-color: #3498db; --offset-left: -7%; --offset-right: -7%; animation-duration: 2.7s; }
+.confetti:nth-child(16) { --confetti-color: #e74c3c; --offset-left: -8%; --offset-right: -8%; animation-duration: 3.1s; }
+.confetti:nth-child(17) { --confetti-color: #f1c40f; --offset-left: -9%; --offset-right: -9%; animation-duration: 2.8s; }
+.confetti:nth-child(18) { --confetti-color: #e67e22; --offset-left: -10%; --offset-right: -10%; animation-duration: 3.2s; }
+.confetti:nth-child(19) { --confetti-color: #16a085; --offset-left: 10%; --offset-right: 10%; animation-duration: 2.5s; }
+.confetti:nth-child(20) { --confetti-color: #34495e; --offset-left: 12%; --offset-right: 12%; animation-duration: 3.3s; }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .controls label, .controls input, .controls button, .controls span {
+        font-size: 1em;
+    }
+    button {
+        padding: 8px 16px;
+        font-size: 1em;
+    }
+    #speedRange {
+        width: 150px;
+    }
+    #speedValue {
+        font-size: 1em;
+    }
+    .cell {
+        width: 40px;
+        height: 40px;
+    }
+    .cell.queen::before {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    h1 {
+        font-size: 2em;
+    }
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .controls label, .controls input, .controls button, .controls span {
+        margin: 5px 0;
+        font-size: 0.9em;
+    }
+    button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+    #speedRange {
+        width: 100px;
+    }
+    #speedValue {
+        font-size: 0.9em;
+    }
+    .cell {
+        width: 30px;
+        height: 30px;
+    }
+    .cell.queen::before {
+        font-size: 18px;
+    }
+}
+
+/* Style the slider container */
+.slider-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Style the range input */
+input[type="range"] {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 200px; /* Set slider width */
+    height: 10px; /* Slider track height */
+    background: #4e4e4e; /* Track color */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency */
+    transition: opacity 0.2s; /* Transition for transparency */
+    margin: 0 10px; /* Margin between label and slider */
+    border-radius: 10px;
+}
+
+/* Handle when hovering over slider */
+input[type="range"]:hover {
+    opacity: 1; /* Full opacity when hovering */
+}
+
+/* Custom thumb */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 20px; /* Thumb width */
+    height: 20px; /* Thumb height */
+    background: #2ecc71; /* Thumb color */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 50%; /* Rounded thumb */
+    box-shadow: 0 0 10px #2ecc71; /* Thumb shadow */
+}
+
+/* Custom thumb for Firefox */
+input[type="range"]::-moz-range-thumb {
+    width: 20px; /* Thumb width */
+    height: 20px; /* Thumb height */
+    background: #2ecc71; /* Thumb color */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 50%; /* Rounded thumb */
+    box-shadow: 0 0 10px #2ecc71; /* Thumb shadow */
+}
+
+/* Custom track for Firefox */
+input[type="range"]::-moz-range-track {
+    height: 10px; /* Track height */
+    background: #ffcc70; /* Track color */
+}
+
+/* Custom track for IE */
+input[type="range"]::-ms-track {
+    width: 100%; /* Full width */
+    height: 10px; /* Track height */
+    background: #24222a; /* Track color */
+    border-color: transparent; /* Remove border */
+    color: transparent; /* Remove color */
+}
+
+/* Custom thumb for IE */
+input[type="range"]::-ms-thumb {
+    width: 20px; /* Thumb width */
+    height: 20px; /* Thumb height */
+    background: #2ecc71; /* Thumb color */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 50%; /* Rounded thumb */
+    box-shadow: 0 0 10px #2ecc71; /* Thumb shadow */
+}
+
+/* Custom focus outline */
+input[type="range"]:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 15px #2ecc71; /* Focus shadow */
+}
+/* Style the number input container */
+.number-input-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Style the number input */
+input[type="number"] {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 60px; /* Set input width */
+    height: 40px; /* Input height */
+    background: #ffcc70; /* Input background color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px; /* Padding inside input */
+    font-size: 1.2em; /* Font size */
+    color: #1b1b1b; /* Font color */
+    text-align: center; /* Center text */
+    outline: none; /* Remove outline */
+    box-shadow: 0 0 10px #ffc248; /* Input shadow */
+    margin: 0 10px; /* Margin between label and input */
+}
+
+/* Style the number input when focused */
+input[type="number"]:focus {
+    box-shadow: 0 0 15px #cc2eb4; /* Focus shadow */
+    background: #ff9a9e; /* Change background color on focus */
+}
+
+/* Style the label */
+label {
+    font-size: 1.2em;
+    color: #ffffff;
+    margin-right: 10px;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Queens Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="crown.png">
+</head>
+<body>
+    <h1>N-Queens Simulation</h1>
+    <div class="controls">
+        <div class="number-input-container">
+            <label for="nValue">Select N (4-10): </label>
+            <input type="number" id="nValue" min="4" max="10" value="8">
+        </div>
+        <div class="slider-container">
+            <label for="speedRange">Select Speed (ms): </label>
+            <input type="range" id="speedRange" min="10" max="1000" value="500" step="10">
+            <span id="speedValue">500 ms</span>
+        </div>
+        <button onclick="startSimulation()">Start Simulation</button>
+        <button id="restartButton" style="display:none;" onclick="restartGame()">Reset</button>
+    </div>
+    <div id="board"></div>
+    <div id="confetti-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>
