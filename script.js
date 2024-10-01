@@ -23,7 +23,7 @@ async function startSimulation() {
   const solved = await solveNQueens(board, 0, n);
   if (solved) {
     document.getElementById("board").style.boxShadow =
-      "0px 10px 40px #FFD700";
+      "0px 10px 40px #ffb3c6";
     showConfetti();
     isRunning = false;
   } // Show confetti if solved
