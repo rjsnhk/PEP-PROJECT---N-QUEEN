@@ -9,21 +9,32 @@
 </head>
 <body>
     <h1>N-Queens Simulation</h1>
+
+    <!-- The chess board -->
+    <div id="board"></div>
+
+    <!-- Controls Section -->
     <div class="controls">
-        <div class="number-input-container">
-            <label for="nValue">Select N (4-10): </label>
-            <input type="number" id="nValue" min="4" max="10" value="8">
+        <div class="slider-container">
+            <label for="nValueRange">Select Number of Queens (4-10): </label>
+            <input type="range" id="nValueRange" min="4" max="10" value="8" step="1">
+            <span id="nValueDisplay">8</span>
         </div>
         <div class="slider-container">
             <label for="speedRange">Select Speed (ms): </label>
             <input type="range" id="speedRange" min="10" max="1000" value="500" step="10">
             <span id="speedValue">500 ms</span>
         </div>
-        <button onclick="startSimulation()">Start Simulation</button>
+    </div>
+
+    <!-- Buttons below the chess board -->
+    <div class="button-container">
+        <button onclick="startSimulation()">Tap To Start</button>
         <button id="restartButton" style="display:none;" onclick="restartGame()">Reset</button>
     </div>
-    <div id="board"></div>
+
     <div id="confetti-container"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
