@@ -76,14 +76,12 @@ h1 {
     color: #ffb3c6;
     opacity: 1;
     transform: scale(1.1);
-    text-shadow: 0 0 10px #ffb3c6;
 }
 
 .cell.queen.backtrack::before {
     color: #ffb3c6;
     opacity: 1;
     transform: scale(1);
-    text-shadow: 0 0 10px #ffb3c6;
 }
 
 #speedRange {
