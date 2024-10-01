@@ -1,5 +1,6 @@
 let currentSpeed = 500;
 let isRunning = false;
+
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -9,7 +10,7 @@ async function startSimulation() {
     return;
   }
   document.getElementById("board").style.boxShadow = "0px 10px 40px #131313f2";
-  const n = parseInt(document.getElementById("nValue").value);
+  const n = parseInt(document.getElementById("nValueRange").value);
   if (n > 10 || n < 4) {
     alert("Please Enter a valid Number");
     return;
@@ -22,7 +23,7 @@ async function startSimulation() {
   const solved = await solveNQueens(board, 0, n);
   if (solved) {
     document.getElementById("board").style.boxShadow =
-      "0px 10px 40px #45ff868d";
+      "0px 10px 40px #FFD700";
     showConfetti();
     isRunning = false;
   } // Show confetti if solved
@@ -63,13 +64,12 @@ async function solveNQueens(board, col, n) {
       await sleep(currentSpeed);
       cell.classList.remove("queen", "backtrack");
     }
-    else{
+    else {
       const cell = document.getElementById(`cell-${row}-${col}`);
       cell.classList.add("queen", "backtrack");
       await sleep(currentSpeed);
-      cell.classList.remove("queen","backtrack");
+      cell.classList.remove("queen", "backtrack");
     }
-    
   }
   return false;
 }
@@ -77,11 +77,9 @@ async function solveNQueens(board, col, n) {
 function isSafe(board, row, col, n) {
   for (let i = 0; i < col; i++) if (board[row][i]) return false;
 
-  for (let i = row, j = col; i >= 0 && j >= 0; i--, j--)
-    if (board[i][j]) return false;
+  for (let i = row, j = col; i >= 0 && j >= 0; i--, j--) if (board[i][j]) return false;
 
-  for (let i = row, j = col; i < n && j >= 0; i++, j--)
-    if (board[i][j]) return false;
+  for (let i = row, j = col; i < n && j >= 0; i++, j--) if (board[i][j]) return false;
 
   return true;
 }
@@ -89,6 +87,10 @@ function isSafe(board, row, col, n) {
 document.getElementById("speedRange").addEventListener("input", function () {
   currentSpeed = parseInt(this.value);
   document.getElementById("speedValue").textContent = `${this.value} ms`;
+});
+
+document.getElementById("nValueRange").addEventListener("input", function () {
+  document.getElementById("nValueDisplay").textContent = this.value;
 });
 
 function showConfetti() {
