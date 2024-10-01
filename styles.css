@@ -66,24 +66,24 @@ h1 {
 .cell.queen::before {
     content: "♛";
     font-size: 32px;
-    color: #FFD700;
+    color: #ffb3c6;
     opacity: 0;
     transform: scale(0);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .cell.queen.active::before {
-    color: #FFD700;
+    color: #ffb3c6;
     opacity: 1;
     transform: scale(1.1);
-    text-shadow: 0 0 10px #FFD700;
+    text-shadow: 0 0 10px #ffb3c6;
 }
 
 .cell.queen.backtrack::before {
-    color: #FFD700;
+    color: #ffb3c6;
     opacity: 1;
     transform: scale(1);
-    text-shadow: 0 0 10px #e0e0e0;
+    text-shadow: 0 0 10px #ffb3c6;
 }
 
 #speedRange {
